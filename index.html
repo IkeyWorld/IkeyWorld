@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeyWorld - Лучший Minecraft сервер</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>KeyWorld Minecraft Server</title>
     <style>
         * {
             margin: 0;
@@ -20,116 +19,35 @@
             --dark: #2c3e50;
             --darker: #1a252f;
             --light: #ecf0f1;
-            --accent: #ffbe0b;
         }
 
         body {
-            background-color: var(--darker);
+            background: linear-gradient(135deg, var(--darker), var(--dark));
             color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: rgba(26, 37, 47, 0.95);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
+            max-width: 500px;
             width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo i {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(26, 37, 47, 0.8), rgba(26, 37, 47, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .logo {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        h1 {
             margin-bottom: 1rem;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -137,913 +55,167 @@
             color: transparent;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #bdc3c7;
-        }
-
-        .server-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            min-width: 150px;
-        }
-
-        .info-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Features Section */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            color: #bdc3c7;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--dark);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        /* Registration Section */
-        .registration {
-            background-color: var(--dark);
-        }
-
-        .registration-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--darker);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
         .form-group {
             margin-bottom: 1.5rem;
+            text-align: left;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 0.5rem;
             color: var(--light);
-            font-weight: 500;
         }
 
-        .form-group input {
+        input {
             width: 100%;
             padding: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
             color: var(--light);
             font-size: 1rem;
         }
 
-        .form-group input:focus {
+        input:focus {
             outline: none;
             border-color: var(--primary);
         }
 
-        .form-submit {
+        button {
             width: 100%;
             padding: 1rem;
-            background-color: var(--primary);
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background 0.3s;
         }
 
-        .form-submit:hover {
-            background-color: var(--primary-dark);
+        button:hover {
+            background: var(--primary-dark);
         }
 
-        /* Setup Guide Section */
-        .setup-guide {
-            background-color: var(--darker);
-        }
-
-        .guide-steps {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .guide-step {
-            background-color: var(--dark);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .guide-step h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .guide-step h3 .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            font-size: 0.9rem;
-        }
-
-        .code-block {
-            background-color: var(--darker);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-family: monospace;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .code-block code {
-            color: var(--light);
-        }
-
-        .note {
-            background-color: rgba(255, 190, 11, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 4px 4px 0;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            background-color: var(--dark);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .gallery-item {
-            height: 200px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Rules Section */
-        .rules-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .rule-item {
-            background-color: var(--dark);
-            margin-bottom: 1rem;
-            padding: 1.5rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .rule-icon {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--darker);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
+        .redirect-btn {
+            background: var(--secondary);
             margin-top: 1rem;
         }
 
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--dark);
-            border-radius: 50%;
-            color: var(--light);
-            transition: background-color 0.3s, transform 0.3s;
+        .redirect-btn:hover {
+            background: #3db8af;
         }
 
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #95a5a6;
-            font-size: 0.9rem;
-        }
-
-        /* Modal */
-        .modal {
+        .message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 5px;
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
         }
 
-        .modal-content {
-            background-color: var(--darker);
-            padding: 2rem;
+        .success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .server-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .modal h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .close-modal {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .server-info {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-key"></i>
-                <span>KeyWorld</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#home">Главная</a>
-                <a href="#features">Особенности</a>
-                <a href="#registration">Регистрация</a>
-                <a href="#setup">Настройка сервера</a>
-                <a href="#gallery">Галерея</a>
-                <a href="#rules">Правила</a>
-            </nav>
-            <button class="cta-button" id="play-now">Играть сейчас</button>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-key"></i>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Добро пожаловать в KeyWorld</h1>
-            <p>Уникальный Minecraft сервер с кастомными механиками, дружным сообществом и регулярными обновлениями. Начни свое приключение сегодня!</p>
-            <button class="cta-button" id="hero-register">Присоединиться</button>
-            
-            <div class="server-info">
-                <div class="info-card">
-                    <h3>Версия</h3>
-                    <p>1.20.1</p>
-                </div>
-                <div class="info-card">
-                    <h3>IP</h3>
-                    <p>play.keyworld.ru</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="section" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши особенности</h2>
-                <p>Узнайте, что делает наш сервер уникальным и почему вам стоит присоединиться именно к нам</p>
+        <h1>KeyWorld Minecraft</h1>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Игровой никнейм:</label>
+                <input type="text" id="username" name="username" required>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Защита от гриферов</h3>
-                    <p>Система защиты территории и инвентаря, которая предотвращает гриферство и воровство.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Активное комьюнити</h3>
-                    <p>Присоединяйтесь к нашему дружному сообществу игроков, которые всегда готовы помочь.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Уникальные миниигры</h3>
-                    <p>Эксклюзивные миниигры, созданные специально для нашего сервера.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3>Экономика</h3>
-                    <p>Развитая экономическая система с магазинами, аукционами и работой.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-dragon"></i>
-                    </div>
-                    <h3>Кастомные мобы</h3>
-                    <p>Сражайтесь с уникальными кастомными мобами и боссами для получения редких лутов.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Соревнования и ивенты</h3>
-                    <p>Регулярные ивенты и турниры с ценными призами для самых активных игроков.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section class="section registration" id="registration">
-        <div class="container">
-            <div class="section-title">
-                <h2>Регистрация на сервере</h2>
-                <p>Заполните форму, чтобы получить доступ к серверу и всем его возможностям</p>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </div>
             
-            <div class="registration-form">
-                <form id="register-form">
-                    <div class="form-group">
-                        <label for="username">Игровой никнейм</label>
-                        <input type="text" id="username" name="username" required placeholder="Введите ваш никнейм в Minecraft">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Электронная почта</label>
-                        <input type="email" id="email" name="email" required placeholder="Введите вашу почту">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" id="password" name="password" required placeholder="Придумайте надежный пароль">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="rules-agree" required>
-                            Я соглашаюсь с <a href="#rules" style="color: var(--primary);">правилами сервера</a>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="form-submit">Зарегистрироваться</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Setup Guide Section -->
-    <section class="section setup-guide" id="setup">
-        <div class="container">
-            <div class="section-title">
-                <h2>Настройка сервера</h2>
-                <p>Подробное руководство по созданию базы данных, системы регистрации и лаунчера для вашего сервера</p>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
             </div>
             
-            <div class="guide-steps">
-                <div class="guide-step">
-                    <h3><span class="step-number">1</span> Создание базы данных</h3>
-                    <p>Для хранения данных игроков вам понадобится база данных. Рекомендуем использовать MySQL.</p>
-                    
-                    <div class="code-block">
-                        <code>
--- Создание базы данных<br>
-CREATE DATABASE minecraft_server;<br><br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
 
--- Создание таблицы для игроков<br>
-CREATE TABLE players (<br>
-&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY,<br>
-&nbsp;&nbsp;username VARCHAR(50) NOT NULL UNIQUE,<br>
-&nbsp;&nbsp;email VARCHAR(100) NOT NULL,<br>
-&nbsp;&nbsp;password_hash VARCHAR(255) NOT NULL,<br>
-&nbsp;&nbsp;registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
-&nbsp;&nbsp;last_login TIMESTAMP NULL,<br>
-&nbsp;&nbsp;is_active BOOLEAN DEFAULT TRUE<br>
-);<br><br>
+        <button class="redirect-btn" onclick="redirectToServer()">
+            Перейти на сервер ›
+        </button>
 
--- Таблица для статистики игроков<br>
-CREATE TABLE player_stats (<br>
-&nbsp;&nbsp;player_id INT PRIMARY KEY,<br>
-&nbsp;&nbsp;play_time INT DEFAULT 0,<br>
-&nbsp;&nbsp;blocks_mined INT DEFAULT 0,<br>
-&nbsp;&nbsp;deaths INT DEFAULT 0,<br>
-&nbsp;&nbsp;FOREIGN KEY (player_id) REFERENCES players(id)<br>
-);
-                        </code>
-                    </div>
-                    
-                    <div class="note">
-                        <strong>Примечание:</strong> Не храните пароли в открытом виде! Всегда используйте хеширование (bcrypt, argon2).
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">2</span> Бэкенд для регистрации</h3>
-                    <p>Создайте API для обработки регистраций и аутентификации игроков.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример на Node.js с Express<br>
-const express = require('express');<br>
-const bcrypt = require('bcrypt');<br>
-const mysql = require('mysql2');<br><br>
+        <div id="message" class="message"></div>
 
-const app = express();<br>
-app.use(express.json());<br><br>
-
-// Подключение к базе данных<br>
-const db = mysql.createConnection({<br>
-&nbsp;&nbsp;host: 'localhost',<br>
-&nbsp;&nbsp;user: 'username',<br>
-&nbsp;&nbsp;password: 'password',<br>
-&nbsp;&nbsp;database: 'minecraft_server'<br>
-});<br><br>
-
-// Регистрация нового игрока<br>
-app.post('/register', async (req, res) => {<br>
-&nbsp;&nbsp;const { username, email, password } = req.body;<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;try {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Хеширование пароля<br>
-&nbsp;&nbsp;&nbsp;&nbsp;const hashedPassword = await bcrypt.hash(password, 10);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Сохранение в базу данных<br>
-&nbsp;&nbsp;&nbsp;&nbsp;const [result] = await db.promise().execute(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'INSERT INTO players (username, email, password_hash) VALUES (?, ?, ?)',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[username, email, hashedPassword]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;res.json({ success: true, message: 'Регистрация успешна' });<br>
-&nbsp;&nbsp;} catch (error) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;res.status(400).json({ success: false, message: 'Ошибка регистрации' });<br>
-&nbsp;&nbsp;}<br>
-});<br><br>
-
-app.listen(3000, () => {<br>
-&nbsp;&nbsp;console.log('Сервер запущен на порту 3000');<br>
-});
-                        </code>
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">3</span> Плагин для Minecraft сервера</h3>
-                    <p>Создайте плагин для связи веб-регистрации с игровым сервером.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример плагина на Java (Spigot/Bukkit)<br>
-public class AuthPlugin extends JavaPlugin {<br>
-&nbsp;&nbsp;private Connection dbConnection;<br><br>
-
-&nbsp;&nbsp;@Override<br>
-&nbsp;&nbsp;public void onEnable() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Подключение к базе данных<br>
-&nbsp;&nbsp;&nbsp;&nbsp;connectToDatabase();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Регистрация событий<br>
-&nbsp;&nbsp;&nbsp;&nbsp;getServer().getPluginManager().registerEvents(new PlayerListener(), this);<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;public class PlayerListener implements Listener {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;@EventHandler<br>
-&nbsp;&nbsp;&nbsp;&nbsp;public void onPlayerJoin(PlayerJoinEvent event) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Player player = event.getPlayer();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String username = player.getName();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Проверка регистрации игрока<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!isPlayerRegistered(username)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player.kickPlayer("Пожалуйста, зарегистрируйтесь на нашем сайте");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;private boolean isPlayerRegistered(String username) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Запрос к базе данных для проверки регистрации<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Возвращает true, если игрок зарегистрирован<br>
-&nbsp;&nbsp;}<br>
-}
-                        </code>
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">4</span> Создание лаунчера</h3>
-                    <p>Разработайте кастомный лаунчер для удобного подключения к серверу.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример на C# (Windows Forms)<br>
-public partial class LauncherForm : Form<br>
-{<br>
-&nbsp;&nbsp;private WebClient client = new WebClient();<br><br>
-
-&nbsp;&nbsp;public LauncherForm()<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;InitializeComponent();<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;private void loginButton_Click(object sender, EventArgs e)<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;string username = usernameTextBox.Text;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;string password = passwordTextBox.Text;<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;// Проверка учетных данных через API<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bool isAuthenticated = AuthenticateUser(username, password);<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;if (isAuthenticated)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Запуск Minecraft с автоматическим подключением к серверу<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchMinecraft();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageBox.Show("Неверные учетные данные");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;private void LaunchMinecraft()<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;ProcessStartstartInfo = new ProcessStartInfo<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileName = "javaw.exe",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arguments = $"-jar minecraft.jar --server play.keyworld.ru --port 25565"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Process.Start(startInfo);<br>
-&nbsp;&nbsp;}<br>
-}
-                        </code>
-                    </div>
-                    
-                    <div class="note">
-                        <strong>Важно:</strong> Для лаунчера также потребуется система автоматического обновления клиента и проверки целостности файлов.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="section gallery" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Галерея</h2>
-                <p>Посмотрите скриншоты с нашего сервера и вдохновитесь для создания своих проектов</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Build">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1560769684-55015cee73a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Landscape">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft City">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1633617477271-d4f351ff7c7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Adventure">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rules Section -->
-    <section class="section" id="rules">
-        <div class="container">
-            <div class="section-title">
-                <h2>Правила сервера</h2>
-                <p>Для поддержания дружелюбной атмосферы все игроки должны соблюдать наши правила</p>
-            </div>
-            
-            <div class="rules-list">
-                <div class="rule-item">
-                    <div class="rule-icon">
-                        <i class="fas fa-ban"></i>
-                    </div>
-                    <div>
-                        <h3>Запрещено гриферство</h3>
-                        <p>Нельзя разрушать или воровать чужие постройки без разрешения владельца.</p>
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">
-                        <i class="fas fa-comment-slash"></i>
-                    </div>
-                    <div>
-                        <h3>Уважайте других игроков</h3>
-                        <p>Запрещены оскорбления, дискриминация и разжигание конфликтов.</p>
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div>
-                        <h3>Без читов</h3>
-                        <p>Использование любых читов, модов, дающих преимущество, и эксплойтов запрещено.</p>
-                    </div>
-                </div>
-                
-                <div class="rule-item">
-                    <div class="rule-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <div>
-                        <h3>Справедливая игра</h3>
-                        <p>Запрещена торговля внутриигровыми предметами за реальные деньги.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>KeyWorld</h3>
-                    <p>Уникальный Minecraft сервер с кастомными механиками и дружным сообществом.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Быстрые ссылки</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Главная</a></li>
-                        <li><a href="#features">Особенности</a></li>
-                        <li><a href="#registration">Регистрация</a></li>
-                        <li><a href="#setup">Настройка сервера</a></li>
-                        <li><a href="#rules">Правила</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Полезное</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">База знаний</a></li>
-                        <li><a href="#">Поддержка</a></li>
-                        <li><a href="#">Донат</a></li>
-                        <li><a href="#">Голосование</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> admin@keyworld.ru</li>
-                        <li><i class="fas fa-globe"></i> keyworld.ru</li>
-                        <li><i class="fas fa-server"></i> play.keyworld.ru</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 KeyWorld. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Registration Modal -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <h2>Регистрация успешна!</h2>
-            <p>Спасибо за регистрацию на сервере KeyWorld. Данные для входа отправлены на вашу почту.</p>
-            <p>IP сервера: <strong>play.keyworld.ru</strong></p>
-            <button class="close-modal" id="close-modal">Закрыть</button>
+        <div class="server-info">
+            <p><strong>IP сервера:</strong> play.keyworld.ru</p>
+            <p><strong>Версия:</strong> 1.20.1</p>
         </div>
     </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Функция редиректа (замените URL на ваш)
+        function redirectToServer() {
+            const redirectUrl = 'https://your-minecraft-server.com'; // ЗАМЕНИТЕ НА ВАШ URL
+            window.open(redirectUrl, '_blank');
+        }
 
-        // Registration form handling
-        const registerForm = document.getElementById('register-form');
-        const successModal = document.getElementById('success-modal');
-        const closeModal = document.getElementById('close-modal');
-        const playNowBtn = document.getElementById('play-now');
-        const heroRegisterBtn = document.getElementById('hero-register');
-
-        registerForm.addEventListener('submit', function(e) {
+        // Обработка формы регистрации
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Simple form validation
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if(username && email && password) {
-                // In a real application, you would send this data to a server
-                // For demo purposes, we'll just show the success modal
-                successModal.style.display = 'flex';
-            } else {
-                alert('Пожалуйста, заполните все поля формы.');
-            }
-        });
+            const formData = new FormData(this);
+            const data = {
+                username: formData.get('username'),
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
 
-        // Close modal
-        closeModal.addEventListener('click', function() {
-            successModal.style.display = 'none';
-        });
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
 
-        // Play now button
-        playNowBtn.addEventListener('click', function() {
-            document.getElementById('registration').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Hero register button
-        heroRegisterBtn.addEventListener('click', function() {
-            document.getElementById('registration').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(e) {
-            if(e.target === successModal) {
-                successModal.style.display = 'none';
+                const result = await response.json();
+                
+                const messageEl = document.getElementById('message');
+                if (response.ok) {
+                    messageEl.textContent = 'Регистрация успешна! Проверьте вашу почту.';
+                    messageEl.className = 'message success';
+                    this.reset();
+                } else {
+                    messageEl.textContent = result.message || 'Ошибка регистрации';
+                    messageEl.className = 'message error';
+                }
+                messageEl.style.display = 'block';
+                
+            } catch (error) {
+                const messageEl = document.getElementById('message');
+                messageEl.textContent = 'Ошибка соединения с сервером';
+                messageEl.className = 'message error';
+                messageEl.style.display = 'block';
             }
         });
     </script>
