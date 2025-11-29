@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MysticCraft - Лучший Minecraft сервер</title>
+    <title>KeyWorld - Лучший Minecraft сервер</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,13 +14,13 @@
         }
 
         :root {
-            --primary: #2ecc71;
-            --primary-dark: #27ae60;
-            --secondary: #3498db;
+            --primary: #ff6b35;
+            --primary-dark: #e85a2b;
+            --secondary: #4ecdc4;
             --dark: #2c3e50;
             --darker: #1a252f;
             --light: #ecf0f1;
-            --accent: #e74c3c;
+            --accent: #ffbe0b;
         }
 
         body {
@@ -216,6 +216,65 @@
             font-size: 1.5rem;
         }
 
+        /* Registration Section */
+        .registration {
+            background-color: var(--dark);
+        }
+
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--darker);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
         /* Gallery Section */
         .gallery {
             background-color: var(--dark);
@@ -334,6 +393,44 @@
             font-size: 0.9rem;
         }
 
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--darker);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -360,39 +457,39 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <i class="fas fa-cube"></i>
-                <span>MysticCraft</span>
+                <i class="fas fa-key"></i>
+                <span>KeyWorld</span>
             </div>
             <nav class="nav-links">
                 <a href="#home">Главная</a>
                 <a href="#features">Особенности</a>
+                <a href="#registration">Регистрация</a>
                 <a href="#gallery">Галерея</a>
                 <a href="#rules">Правила</a>
-                <a href="#vote">Голосование</a>
             </nav>
-            <button class="cta-button">Играть сейчас</button>
+            <button class="cta-button" id="play-now">Играть сейчас</button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Добро пожаловать на MysticCraft</h1>
-            <p>Лучший Minecraft сервер с уникальными модами, дружным комьюнити и захватывающими ивентами. Присоединяйся к нам и начни своё приключение!</p>
-            <button class="cta-button">Присоединиться</button>
+            <h1>Добро пожаловать в KeyWorld</h1>
+            <p>Уникальный Minecraft сервер с кастомными механиками, дружным сообществом и регулярными обновлениями. Начни свое приключение сегодня!</p>
+            <button class="cta-button" id="hero-register">Присоединиться</button>
             
             <div class="server-info">
                 <div class="info-card">
                     <h3>Онлайн</h3>
-                    <p>127/200</p>
+                    <p id="online-count">0/200</p>
                 </div>
                 <div class="info-card">
                     <h3>Версия</h3>
-                    <p>1.19.2</p>
+                    <p>1.20.1</p>
                 </div>
                 <div class="info-card">
                     <h3>IP</h3>
-                    <p>play.mysticcraft.ru</p>
+                    <p>play.keyworld.ru</p>
                 </div>
             </div>
         </div>
@@ -412,7 +509,7 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Защита от гриферов</h3>
-                    <p>Наш сервер защищен современной системой защиты, которая предотвращает гриферство и читерство.</p>
+                    <p>Система защиты территории и инвентаря, которая предотвращает гриферство и воровство.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -428,7 +525,7 @@
                         <i class="fas fa-gamepad"></i>
                     </div>
                     <h3>Уникальные миниигры</h3>
-                    <p>Попробуйте наши эксклюзивные миниигры, которые вы не найдете на других серверах.</p>
+                    <p>Эксклюзивные миниигры, созданные специально для нашего сервера.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -458,6 +555,65 @@
         </div>
     </section>
 
+    <!-- Registration Section -->
+    <section class="section registration" id="registration">
+        <div class="container">
+            <div class="section-title">
+                <h2>Регистрация на сервере</h2>
+                <p>Заполните форму, чтобы получить доступ к серверу и всем его возможностям</p>
+            </div>
+            
+            <div class="registration-form">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="username">Игровой никнейм</label>
+                        <input type="text" id="username" name="username" required placeholder="Введите ваш никнейм в Minecraft">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Электронная почта</label>
+                        <input type="email" id="email" name="email" required placeholder="Введите вашу почту">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" required placeholder="Придумайте надежный пароль">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="server-type">Предпочитаемый режим</label>
+                        <select id="server-type" name="server-type" required>
+                            <option value="">Выберите режим</option>
+                            <option value="survival">Выживание</option>
+                            <option value="creative">Креатив</option>
+                            <option value="minigames">Миниигры</option>
+                            <option value="all">Все режимы</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Опыт в Minecraft</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Выберите ваш опыт</option>
+                            <option value="beginner">Начинающий</option>
+                            <option value="intermediate">Опытный</option>
+                            <option value="expert">Эксперт</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="rules-agree" required>
+                            Я соглашаюсь с <a href="#rules" style="color: var(--primary);">правилами сервера</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section class="section gallery" id="gallery">
         <div class="container">
@@ -468,22 +624,16 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Build">
+                    <img src="https://images.unsplash.com/photo-1531315630201-bb15abeb1653?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Build">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1560769684-55015cee73a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Landscape">
+                    <img src="https://images.unsplash.com/photo-1560769684-55015cee73a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Landscape">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft City">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft City">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1633617477271-d4f351ff7c7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Adventure">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Nether">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Minecraft End">
+                    <img src="https://images.unsplash.com/photo-1633617477271-d4f351ff7c7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Adventure">
                 </div>
             </div>
         </div>
@@ -546,8 +696,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>MysticCraft</h3>
-                    <p>Лучший Minecraft сервер с уникальными возможностями и дружным сообществом.</p>
+                    <h3>KeyWorld</h3>
+                    <p>Уникальный Minecraft сервер с кастомными механиками и дружным сообществом.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-discord"></i></a>
                         <a href="#"><i class="fab fa-vk"></i></a>
@@ -561,7 +711,7 @@
                     <ul class="footer-links">
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#features">Особенности</a></li>
-                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#registration">Регистрация</a></li>
                         <li><a href="#rules">Правила</a></li>
                     </ul>
                 </div>
@@ -579,18 +729,28 @@
                 <div class="footer-column">
                     <h3>Контакты</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> admin@mysticcraft.ru</li>
-                        <li><i class="fas fa-globe"></i> mysticcraft.ru</li>
-                        <li><i class="fas fa-server"></i> play.mysticcraft.ru</li>
+                        <li><i class="fas fa-envelope"></i> admin@keyworld.ru</li>
+                        <li><i class="fas fa-globe"></i> keyworld.ru</li>
+                        <li><i class="fas fa-server"></i> play.keyworld.ru</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 MysticCraft. Все права защищены.</p>
+                <p>&copy; 2023 KeyWorld. Все права защищены.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <h2>Регистрация успешна!</h2>
+            <p>Спасибо за регистрацию на сервере KeyWorld. Данные для входа отправлены на вашу почту.</p>
+            <p>IP сервера: <strong>play.keyworld.ru</strong></p>
+            <button class="close-modal" id="close-modal">Закрыть</button>
+        </div>
+    </div>
 
     <script>
         // Smooth scrolling for anchor links
@@ -611,24 +771,73 @@
             });
         });
 
-        // Update online players count randomly (for demo)
+        // Update online players count (realistic simulation)
         function updateOnlinePlayers() {
-            const onlineElement = document.querySelector('.server-info .info-card:nth-child(1) p');
+            const onlineElement = document.getElementById('online-count');
             if(onlineElement) {
-                const current = parseInt(onlineElement.textContent.split('/')[0]);
-                const max = 200;
-                // Random change between -5 and +5
-                const change = Math.floor(Math.random() * 11) - 5;
-                let newCount = current + change;
-                // Keep within reasonable bounds
-                if(newCount < 100) newCount = 100;
-                if(newCount > 180) newCount = 180;
-                onlineElement.textContent = `${newCount}/${max}`;
+                // Realistic player count between 80 and 160
+                const online = Math.floor(Math.random() * 80) + 80;
+                onlineElement.textContent = `${online}/200`;
             }
         }
 
-        // Update every 30 seconds
-        setInterval(updateOnlinePlayers, 30000);
+        // Initialize with a realistic count
+        updateOnlinePlayers();
+        
+        // Update every 60 seconds
+        setInterval(updateOnlinePlayers, 60000);
+
+        // Registration form handling
+        const registerForm = document.getElementById('register-form');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+        const playNowBtn = document.getElementById('play-now');
+        const heroRegisterBtn = document.getElementById('hero-register');
+
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const serverType = document.getElementById('server-type').value;
+            const experience = document.getElementById('experience').value;
+            
+            if(username && email && password && serverType && experience) {
+                // In a real application, you would send this data to a server
+                // For demo purposes, we'll just show the success modal
+                successModal.style.display = 'flex';
+            } else {
+                alert('Пожалуйста, заполните все поля формы.');
+            }
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            successModal.style.display = 'none';
+        });
+
+        // Play now button
+        playNowBtn.addEventListener('click', function() {
+            document.getElementById('registration').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Hero register button
+        heroRegisterBtn.addEventListener('click', function() {
+            document.getElementById('registration').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if(e.target === successModal) {
+                successModal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
