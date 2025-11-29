@@ -241,7 +241,8 @@
             font-weight: 500;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -251,7 +252,8 @@
             font-size: 1rem;
         }
 
-        .form-group input:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--primary);
         }
@@ -271,66 +273,6 @@
 
         .form-submit:hover {
             background-color: var(--primary-dark);
-        }
-
-        /* Setup Guide Section */
-        .setup-guide {
-            background-color: var(--darker);
-        }
-
-        .guide-steps {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .guide-step {
-            background-color: var(--dark);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .guide-step h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .guide-step h3 .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            font-size: 0.9rem;
-        }
-
-        .code-block {
-            background-color: var(--darker);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-family: monospace;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .code-block code {
-            color: var(--light);
-        }
-
-        .note {
-            background-color: rgba(255, 190, 11, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 4px 4px 0;
         }
 
         /* Gallery Section */
@@ -522,7 +464,6 @@
                 <a href="#home">Главная</a>
                 <a href="#features">Особенности</a>
                 <a href="#registration">Регистрация</a>
-                <a href="#setup">Настройка сервера</a>
                 <a href="#gallery">Галерея</a>
                 <a href="#rules">Правила</a>
             </nav>
@@ -538,6 +479,10 @@
             <button class="cta-button" id="hero-register">Присоединиться</button>
             
             <div class="server-info">
+                <div class="info-card">
+                    <h3>Онлайн</h3>
+                    <p id="online-count">0/200</p>
+                </div>
                 <div class="info-card">
                     <h3>Версия</h3>
                     <p>1.20.1</p>
@@ -636,6 +581,27 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="server-type">Предпочитаемый режим</label>
+                        <select id="server-type" name="server-type" required>
+                            <option value="">Выберите режим</option>
+                            <option value="survival">Выживание</option>
+                            <option value="creative">Креатив</option>
+                            <option value="minigames">Миниигры</option>
+                            <option value="all">Все режимы</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Опыт в Minecraft</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Выберите ваш опыт</option>
+                            <option value="beginner">Начинающий</option>
+                            <option value="intermediate">Опытный</option>
+                            <option value="expert">Эксперт</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
                         <label>
                             <input type="checkbox" name="rules-agree" required>
                             Я соглашаюсь с <a href="#rules" style="color: var(--primary);">правилами сервера</a>
@@ -644,197 +610,6 @@
                     
                     <button type="submit" class="form-submit">Зарегистрироваться</button>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Setup Guide Section -->
-    <section class="section setup-guide" id="setup">
-        <div class="container">
-            <div class="section-title">
-                <h2>Настройка сервера</h2>
-                <p>Подробное руководство по созданию базы данных, системы регистрации и лаунчера для вашего сервера</p>
-            </div>
-            
-            <div class="guide-steps">
-                <div class="guide-step">
-                    <h3><span class="step-number">1</span> Создание базы данных</h3>
-                    <p>Для хранения данных игроков вам понадобится база данных. Рекомендуем использовать MySQL.</p>
-                    
-                    <div class="code-block">
-                        <code>
--- Создание базы данных<br>
-CREATE DATABASE minecraft_server;<br><br>
-
--- Создание таблицы для игроков<br>
-CREATE TABLE players (<br>
-&nbsp;&nbsp;id INT AUTO_INCREMENT PRIMARY KEY,<br>
-&nbsp;&nbsp;username VARCHAR(50) NOT NULL UNIQUE,<br>
-&nbsp;&nbsp;email VARCHAR(100) NOT NULL,<br>
-&nbsp;&nbsp;password_hash VARCHAR(255) NOT NULL,<br>
-&nbsp;&nbsp;registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
-&nbsp;&nbsp;last_login TIMESTAMP NULL,<br>
-&nbsp;&nbsp;is_active BOOLEAN DEFAULT TRUE<br>
-);<br><br>
-
--- Таблица для статистики игроков<br>
-CREATE TABLE player_stats (<br>
-&nbsp;&nbsp;player_id INT PRIMARY KEY,<br>
-&nbsp;&nbsp;play_time INT DEFAULT 0,<br>
-&nbsp;&nbsp;blocks_mined INT DEFAULT 0,<br>
-&nbsp;&nbsp;deaths INT DEFAULT 0,<br>
-&nbsp;&nbsp;FOREIGN KEY (player_id) REFERENCES players(id)<br>
-);
-                        </code>
-                    </div>
-                    
-                    <div class="note">
-                        <strong>Примечание:</strong> Не храните пароли в открытом виде! Всегда используйте хеширование (bcrypt, argon2).
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">2</span> Бэкенд для регистрации</h3>
-                    <p>Создайте API для обработки регистраций и аутентификации игроков.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример на Node.js с Express<br>
-const express = require('express');<br>
-const bcrypt = require('bcrypt');<br>
-const mysql = require('mysql2');<br><br>
-
-const app = express();<br>
-app.use(express.json());<br><br>
-
-// Подключение к базе данных<br>
-const db = mysql.createConnection({<br>
-&nbsp;&nbsp;host: 'localhost',<br>
-&nbsp;&nbsp;user: 'username',<br>
-&nbsp;&nbsp;password: 'password',<br>
-&nbsp;&nbsp;database: 'minecraft_server'<br>
-});<br><br>
-
-// Регистрация нового игрока<br>
-app.post('/register', async (req, res) => {<br>
-&nbsp;&nbsp;const { username, email, password } = req.body;<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;try {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Хеширование пароля<br>
-&nbsp;&nbsp;&nbsp;&nbsp;const hashedPassword = await bcrypt.hash(password, 10);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Сохранение в базу данных<br>
-&nbsp;&nbsp;&nbsp;&nbsp;const [result] = await db.promise().execute(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'INSERT INTO players (username, email, password_hash) VALUES (?, ?, ?)',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[username, email, hashedPassword]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;res.json({ success: true, message: 'Регистрация успешна' });<br>
-&nbsp;&nbsp;} catch (error) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;res.status(400).json({ success: false, message: 'Ошибка регистрации' });<br>
-&nbsp;&nbsp;}<br>
-});<br><br>
-
-app.listen(3000, () => {<br>
-&nbsp;&nbsp;console.log('Сервер запущен на порту 3000');<br>
-});
-                        </code>
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">3</span> Плагин для Minecraft сервера</h3>
-                    <p>Создайте плагин для связи веб-регистрации с игровым сервером.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример плагина на Java (Spigot/Bukkit)<br>
-public class AuthPlugin extends JavaPlugin {<br>
-&nbsp;&nbsp;private Connection dbConnection;<br><br>
-
-&nbsp;&nbsp;@Override<br>
-&nbsp;&nbsp;public void onEnable() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Подключение к базе данных<br>
-&nbsp;&nbsp;&nbsp;&nbsp;connectToDatabase();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Регистрация событий<br>
-&nbsp;&nbsp;&nbsp;&nbsp;getServer().getPluginManager().registerEvents(new PlayerListener(), this);<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;public class PlayerListener implements Listener {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;@EventHandler<br>
-&nbsp;&nbsp;&nbsp;&nbsp;public void onPlayerJoin(PlayerJoinEvent event) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Player player = event.getPlayer();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String username = player.getName();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Проверка регистрации игрока<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!isPlayerRegistered(username)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player.kickPlayer("Пожалуйста, зарегистрируйтесь на нашем сайте");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<br>
-&nbsp;&nbsp;private boolean isPlayerRegistered(String username) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Запрос к базе данных для проверки регистрации<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Возвращает true, если игрок зарегистрирован<br>
-&nbsp;&nbsp;}<br>
-}
-                        </code>
-                    </div>
-                </div>
-                
-                <div class="guide-step">
-                    <h3><span class="step-number">4</span> Создание лаунчера</h3>
-                    <p>Разработайте кастомный лаунчер для удобного подключения к серверу.</p>
-                    
-                    <div class="code-block">
-                        <code>
-// Пример на C# (Windows Forms)<br>
-public partial class LauncherForm : Form<br>
-{<br>
-&nbsp;&nbsp;private WebClient client = new WebClient();<br><br>
-
-&nbsp;&nbsp;public LauncherForm()<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;InitializeComponent();<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;private void loginButton_Click(object sender, EventArgs e)<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;string username = usernameTextBox.Text;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;string password = passwordTextBox.Text;<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;// Проверка учетных данных через API<br>
-&nbsp;&nbsp;&nbsp;&nbsp;bool isAuthenticated = AuthenticateUser(username, password);<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;if (isAuthenticated)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Запуск Minecraft с автоматическим подключением к серверу<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchMinecraft();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageBox.Show("Неверные учетные данные");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br><br>
-
-&nbsp;&nbsp;private void LaunchMinecraft()<br>
-&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;ProcessStartstartInfo = new ProcessStartInfo<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileName = "javaw.exe",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arguments = $"-jar minecraft.jar --server play.keyworld.ru --port 25565"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Process.Start(startInfo);<br>
-&nbsp;&nbsp;}<br>
-}
-                        </code>
-                    </div>
-                    
-                    <div class="note">
-                        <strong>Важно:</strong> Для лаунчера также потребуется система автоматического обновления клиента и проверки целостности файлов.
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -937,7 +712,6 @@ public partial class LauncherForm : Form<br>
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#features">Особенности</a></li>
                         <li><a href="#registration">Регистрация</a></li>
-                        <li><a href="#setup">Настройка сервера</a></li>
                         <li><a href="#rules">Правила</a></li>
                     </ul>
                 </div>
@@ -997,6 +771,22 @@ public partial class LauncherForm : Form<br>
             });
         });
 
+        // Update online players count (realistic simulation)
+        function updateOnlinePlayers() {
+            const onlineElement = document.getElementById('online-count');
+            if(onlineElement) {
+                // Realistic player count between 80 and 160
+                const online = Math.floor(Math.random() * 80) + 80;
+                onlineElement.textContent = `${online}/200`;
+            }
+        }
+
+        // Initialize with a realistic count
+        updateOnlinePlayers();
+        
+        // Update every 60 seconds
+        setInterval(updateOnlinePlayers, 60000);
+
         // Registration form handling
         const registerForm = document.getElementById('register-form');
         const successModal = document.getElementById('success-modal');
@@ -1011,8 +801,10 @@ public partial class LauncherForm : Form<br>
             const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const serverType = document.getElementById('server-type').value;
+            const experience = document.getElementById('experience').value;
             
-            if(username && email && password) {
+            if(username && email && password && serverType && experience) {
                 // In a real application, you would send this data to a server
                 // For demo purposes, we'll just show the success modal
                 successModal.style.display = 'flex';
